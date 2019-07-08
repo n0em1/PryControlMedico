@@ -37,6 +37,7 @@ public class Paciente extends Persona implements Serializable{
 	@Column(name = "NACIMIENTO")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past(message = "{date}")
+	@NotNull
 	private LocalDate nacimiento;
 	
 	@Size(max = 25)
