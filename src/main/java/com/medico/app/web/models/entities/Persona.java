@@ -1,5 +1,6 @@
 package com.medico.app.web.models.entities;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
@@ -10,10 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,7 +30,7 @@ public abstract class Persona {
 	
 	@Size(max = 35)
 	@Column(name = "NOMBRES")
-	@NotEmpty
+	@NotEmpty(message = "Campo Obligatorio")
 	private String nombre;
 	
 	@Size(max = 35)
@@ -40,20 +38,12 @@ public abstract class Persona {
 	@NotEmpty
 	private String apellido;
 	
-	@Column(name = "NACIMIENTO")
-	@Past
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Calendar nacimiento;
-	
 	@Size(max = 15)
 	@Column(name = "TELEFONO")
-	@NotEmpty
 	private String telefono;
 	
 	@Size(max = 35)
 	@Column(name = "EMAIL")
-	@NotEmpty
 	@Email
 	private String email;
 	
@@ -96,14 +86,6 @@ public abstract class Persona {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public Calendar getNacimiento() {
-		return nacimiento;
-	}
-
-	public void setNacimiento(Calendar nacimiento) {
-		this.nacimiento = nacimiento;
 	}
 
 	public String getTelefono() {

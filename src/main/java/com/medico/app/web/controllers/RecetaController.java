@@ -93,7 +93,6 @@ public class RecetaController {
 		}
 		catch(Exception ex){
 			message.addFlashAttribute("error", ex.toString());
-			System.out.println("se cago");
 			System.out.println(ex.toString());
 		}
 		return "redirect:/receta/list";
@@ -145,6 +144,7 @@ public class RecetaController {
 	@GetMapping(value="/list")
 	public String list(Model model) {
 		List<Receta> recetas = service.findAll();
+		
 		model.addAttribute("title","Listado de Recetas");
 		model.addAttribute("lista", recetas);
 		return "receta/list";		
